@@ -30,6 +30,10 @@ dlg
   end}
   :show{wait=false}
  
+  if alignData == nil then
+	alignData = AlinHelperOffset_dlg.data 
+  end
+ 
   --MINIMIZE TO SAVE SPACE
   function showHideAlignOptions()
     local data = dlg.data
