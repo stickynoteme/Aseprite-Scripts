@@ -5,8 +5,9 @@
 ----------------------------------------------------------------------
 local AsepriteScriptsFolder = os.getenv('APPDATA') .. "/Aseprite/scripts/"
 
-local dlg = Dialog("Alinment Helper")
-dlg
+AlinHelperOffset_dlg = Dialog{ title="Alinment Helper", onclose=function() AlignHelperOffsetDLG = AlinHelperOffset_dlg.bounds writeVarToFile() end}
+
+AlinHelperOffset_dlg
   :check{ id="alignMinimize", text="Minimize", selected=false, onclick=function() showHideAlignOptions() end}
   :button{id = "TL",text="TL",onclick=function() dofile(AsepriteScriptsFolder .. ".lib/AlignTopLeft.lua") end}
   :button{id = "T",text="T",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignTopCenter.lua") end}
@@ -23,18 +24,33 @@ dlg
   :separator{id = "sep1",text="Offset Settings [x , y]"}
   :number {id = "y_offset", text = y_offset or "0", decimals = 0}
   :number {id = "x_offset", text = x_offset or "0", decimals = 0}
-  :button{id = "Apply",text="Apply",onclick=function() alignData = dlg.data end}
-  :button{id = "Reset",text="Reset",onclick=function()
-    alignData.x_offset = 0
-    alignData.y_offset = 0
-  end}
+  :button{id = "Apply",text="Apply",onclick=function() alignData = AlinHelperOffset_dlg.data end}
+  :button{id = "Reset",text="Reset",onclick=function() alignData.x_offset = 0 alignData.y_offset = 0 end}
   :show{wait=false}
+  
+  if alignData == nil then
+	alignData = AlinHelperOffset_dlg.data 
+  end
+  
+if AlignHelperOffsetDLG == nil then
+	AlignHelperOffsetDLG = AlinHelperOffset_dlg.bounds
+ end
+local f = io.open(AsepriteScriptsFolder .. "AlignHelper_offset_window_save.cfg", "r")
+if f ~= nil then
+	AlignHelperOffsetDLG.x = f:read("*line")
+	AlignHelperOffsetDLG.y = f:read("*line")
+	AlignHelperOffsetDLG.width = f:read("*line")
+	AlignHelperOffsetDLG.height = f:read("*line")
+	f:close()
+end
+  AlinHelperOffset_dlg.bounds = AlignHelperOffsetDLG
+  
  
   --MINIMIZE TO SAVE SPACE
   function showHideAlignOptions()
-    local data = dlg.data
+    local data = AlinHelperOffset_dlg.data
 	local currentshowHideAlighn = not data.alignMinimize
-    dlg
+    AlinHelperOffset_dlg
 	  :modify{id="TL",visible = currentshowHideAlighn}
       :modify{id="T",visible = currentshowHideAlighn}
 	  :modify{id="TR",visible = currentshowHideAlighn}
@@ -51,3 +67,11 @@ dlg
 	  :modify{id="Reset",visible = currentshowHideAlighn}
     end
   
+function writeVarToFile ()
+	local f = assert(io.open(AsepriteScriptsFolder .. "MyToolbar_window_save.cfg", "w"))
+	f:write(MyToolBarDLG.x, "\n")
+	f:write(MyToolBarDLG.y, "\n")
+	f:write(MyToolBarDLG.width, "\n")
+	f:write(MyToolBarDLG.height, "\n")
+	f:close()
+end
