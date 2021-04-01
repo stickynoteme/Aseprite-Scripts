@@ -3,6 +3,8 @@
 AlignHelper is based on  Geoff Beier script-center-selection
 https://git.sr.ht/~tuxpup/asesprite-script-center-selection
 
+NOTE: Must be using a version of Aseprite using the users APPDATA folder. eg: Not in portable mode, due to mysterious workings of dofile command... on one computer dofile will work proper with realtive paths then on another it simply won't work. 
+
 How to use:
 Place the "AlignHelper.lua" file
 and the ".lib" folder into your Aesprite script folder.
