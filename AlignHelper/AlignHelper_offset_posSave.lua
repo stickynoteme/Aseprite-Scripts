@@ -68,10 +68,10 @@ end
     end
   
 function writeVarToFile ()
-	local f = assert(io.open(AsepriteScriptsFolder .. "MyToolbar_window_save.cfg", "w"))
-	f:write(MyToolBarDLG.x, "\n")
-	f:write(MyToolBarDLG.y, "\n")
-	f:write(MyToolBarDLG.width, "\n")
-	f:write(MyToolBarDLG.height, "\n")
+	local f = assert(io.open(AsepriteScriptsFolder .. "AlignHelper_offset_window_save.cfg", "w"))
+	f:write(AlignHelperOffsetDLG.x, "\n")
+	f:write(AlignHelperOffsetDLG.y, "\n")
+	f:write(AlignHelperOffsetDLG.width, "\n")
+	f:write(AlignHelperOffsetDLG.height, "\n")
 	f:close()
 end
