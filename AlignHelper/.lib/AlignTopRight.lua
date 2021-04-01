@@ -18,7 +18,7 @@ end
 
 -- The MoveMask command requires us to specify X <units> up, Y <units> down
 -- rather than just specifying new coordinates.
-new_x = spr.bounds.width - sel.bounds.width
+new_x = spr.bounds.width - sel.bounds.width + alignData.x_offset
 x_dir = "right"
 x_distance = 0
 if new_x < sel.bounds.x then
@@ -29,12 +29,12 @@ elseif new_x > sel.bounds.x then
 	x_distance = new_x - sel.bounds.x
 end
 
-new_y = 0
+new_y = 0 + alignData.y_offset
 y_dir = "down"
 y_distance = 0
 if new_y < sel.bounds.y then
 	y_dir = "up"
-	y_distance = sel.bounds.y - new_y
+	y_distance = sel.bounds.y - new_y 
 elseif new_y > sel.bounds.y then
 	y_dir = "down"
 	y_distance = new_y - sel.bounds.y
