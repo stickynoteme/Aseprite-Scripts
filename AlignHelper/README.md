@@ -16,8 +16,3 @@ If you don't want to use the interface, take out whatever alighment script you w
 Offset version:
 
 Note: If you use both versions in one session make sure to reset the offset otherwise it will apply to the non-offset version too.
-
-Offset_posSave version:
-This version needs write acces, as it saves the winodw position to a cfg file in the users appdata folder upon being closed, that way after you close it once to save the position it'll always open in that spot.
-
-Note: The dialog needs to be clsoed to save it's position so simply closing out of Aesprite will not save it's position.
