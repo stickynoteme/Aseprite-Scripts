@@ -5,8 +5,9 @@
 ----------------------------------------------------------------------
 local AsepriteScriptsFolder = os.getenv('APPDATA') .. "/Aseprite/scripts/"
 
-local dlg = Dialog("Alinment Helper")
-dlg
+AlinHelper_dlg = Dialog{ title="Alinment Helper"}
+
+AlinHelper_dlg
   :button{id = "TL",text="TL",onclick=function() dofile(AsepriteScriptsFolder .. ".lib/AlignTopLeft.lua") end}
   :button{id = "T",text="T",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignTopCenter.lua") end}
   :button{id = "TR",text="TR",onclick=function() dofile(AsepriteScriptsFolder .."/.lib/AlignTopRight.lua") end}
@@ -18,8 +19,17 @@ dlg
   :button{id = "BL",text="BL",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignBottomLeft.lua") end}
   :button{id = "B",text="B",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignBottomCenter.lua") end}
   :button{id = "BR",text="BR",onclick=function() dofile(AsepriteScriptsFolder .."/.lib/AlignBottomRight.lua") end}
+  :number {id = "y_offset", text = y_offset or "0", decimals = 0, visible = false}
+  :number {id = "x_offset", text = x_offset or "0", decimals = 0, visible = false}
+  
   :show{wait=false}
   
-    if alignData == nil then
-	alignData = AlinHelperOffset_dlg.data 
+  if alignData == nil then
+	alignData = AlinHelper_dlg.data 
   end
+  
+if AlignHelperOffsetDLG == nil then
+	AlignHelperOffsetDLG = AlinHelper_dlg.bounds
+ end  
+ 
+
