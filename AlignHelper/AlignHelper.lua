@@ -7,16 +7,19 @@ local AsepriteScriptsFolder = os.getenv('APPDATA') .. "/Aseprite/scripts/"
 
 local dlg = Dialog("Alinment Helper")
 dlg
-  :button{text="TL",onclick=function() dofile(AsepriteScriptsFolder .. ".lib/AlignTopLeft.lua") end}
-  :button{text="T",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignTopCenter.lua") end}
-  :button{text="TR",onclick=function() dofile(AsepriteScriptsFolder .."/.lib/AlignTopRight.lua") end}
+  :button{id = "TL",text="TL",onclick=function() dofile(AsepriteScriptsFolder .. ".lib/AlignTopLeft.lua") end}
+  :button{id = "T",text="T",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignTopCenter.lua") end}
+  :button{id = "TR",text="TR",onclick=function() dofile(AsepriteScriptsFolder .."/.lib/AlignTopRight.lua") end}
   :newrow()
-  :button{text="CL",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignCenterLeft.lua") end}
-  :button{text="C",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignCenter.lua") end}
-  :button{text="CR",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignCenterRight.lua") end}
+  :button{id = "CL",text="CL",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignCenterLeft.lua") end}
+  :button{id = "C",text="C",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignCenter.lua") end}
+  :button{id = "CR",text="CR",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignCenterRight.lua") end}
   :newrow()
-  :button{text="BL",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignBottomLeft.lua") end}
-  :button{text="B",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignBottomCenter.lua") end}
-  :button{text="BR",onclick=function() dofile(AsepriteScriptsFolder .."/.lib/AlignBottomRight.lua") end}
+  :button{id = "BL",text="BL",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignBottomLeft.lua") end}
+  :button{id = "B",text="B",onclick=function() dofile(AsepriteScriptsFolder .. "/.lib/AlignBottomCenter.lua") end}
+  :button{id = "BR",text="BR",onclick=function() dofile(AsepriteScriptsFolder .."/.lib/AlignBottomRight.lua") end}
   :show{wait=false}
   
+    if alignData == nil then
+	alignData = AlinHelperOffset_dlg.data 
+  end
